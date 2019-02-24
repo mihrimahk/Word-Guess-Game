@@ -23,7 +23,7 @@ function startGame() {
 
      //computer generates random word from words array
     selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
-
+    document.getElementById("info").innerHTML = "Good Luck!";
     // split the individual word into separate arrays, and store in new array 
     lettersinWord = selectedWord.split("");
 
@@ -61,6 +61,8 @@ function startGame() {
 
 //If/Else, to see if letter selected matches random word
 function checkLetters(letter) {
+    document.getElementById("restart").innerHTML = "";
+
     // Check if letter exist in code at all
     var letterInWord = false;
  
@@ -116,15 +118,15 @@ if (lettersinWord.toString() === blanksAndSuccesses.toString()){
 
 //start the new round   
    document.getElementById("restart").innerHTML = "You won! The word is <b>" + selectedWord + "</b>. If you want to continue: <button type=button class='btn btn-success' onclick='reset();'>GO</button>";
-
+   reset();
 }  
 //if LOST...then alert and reset new round
 else if (guessesLeft === 0) {
 
     lossCount ++;
     document.getElementById("restart").innerHTML = "You failed! The word is <b>" + selectedWord + "</b>. If you want to try again: <button type=button class='btn btn-danger' onclick='reset();'>GO</button>";
-   
     document.getElementById("lossCounter").innerHTML = " " + lossCount;
+    reset();
     }
 }
 
